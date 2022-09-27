@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "embaralha palavra"
+version = "0.1.0"
+description = ""
+authors = ["Renan Andrade <Fel9.renan02@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
