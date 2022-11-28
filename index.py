@@ -1,17 +1,18 @@
 from sorteia_palavra import sorteia_palavra
 from frase_motivacional import frase_motivacional
 from embaralha_palavra import embaralha_palavra
+from unidecode import unidecode
 
 
 def main(tema, dificuldade_selecionada):
     tentativa = 0
-    palavra_sorteada, dificuldade = sorteia_palavra(
-        tema, dificuldade_selecionada)
+    palavra_sorteada, dificuldade = sorteia_palavra(tema, dificuldade_selecionada)
     palavra_embaralhada = embaralha_palavra(palavra_sorteada)
 
     while True:
         frase_sorteada = frase_motivacional()
 
+        print("\n")
         print("A palavra embaralhada é", palavra_embaralhada)
         print("A dificuldade é:", dificuldade)
         print("Você ganha se acerta em, no máximo, 5 tentativas")
@@ -23,12 +24,13 @@ def main(tema, dificuldade_selecionada):
         if palpite.lower() == "parar":
             return print(f"Uma pena :/\nA palavra era: {palavra_sorteada}")
 
-        elif palpite.lower() == palavra_sorteada.lower():
-            print(
-                f"Você ganhou! \nForam {tentativa} {'tentativas' if tentativa > 1 else 'tentativa'}"
-            ) if tentativa <= 5 else print(
-                f"Você perdeu :( \nForam {tentativa} {'tentativas' if tentativa > 1 else 'tentativa'}"
-            )
+        elif unidecode(palpite.lower()) == unidecode(palavra_sorteada.lower()):
+            if tentativa <= 5:
+                print(
+                    f"Você ganhou! \n{f'Foi {tentativa} tentativa' if tentativa ==1 else f'Foram {tentativa} tentativas'}"
+                )
+            else:
+                print(f"Você perdeu :() \nForam {tentativa} tentativas")
             break
         print(f"\n{frase_sorteada}")
 
